@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebApplication1.Models
+{
+    public class Member
+    {
+        public int MemberId { get; set; }
+        public int OrganizationId { get; set; }
+
+        public string MemberName { get; set; }
+        public string MemberSurname { get; set; }
+        public string MemberNickName { get; set; }
+
+        [ForeignKey("OrganizationId")]
+        public virtual Organization Organization { get; set; }
+
+        public virtual ICollection<Membership> Memberships { get; set; }
+    }
+}
