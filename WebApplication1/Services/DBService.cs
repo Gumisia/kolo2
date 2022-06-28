@@ -18,21 +18,21 @@ namespace WebApplication1.Services
 
         public async Task<IEnumerable<SomeKindOfTeams>> GetTeam(int id)
         {
-            return await _mainDbContext.Teams
+            return await _mainDbContext.Teams.Where(e => e.TeamId == id)
                         .Select(e => new SomeKindOfTeams
                         {
-                            Id = e.Id,
+                            TeamId = e.TeamId,
                             TeamDescription = e.TeamDescription,
                             TeamName = e.TeamName,
-                            Organizations = new Organization
+                            /*Organizations = new Organization
                             {
-                                OrganizationId = e.Organization.OrganizationId,
+   
                                 OrganizationName = e.Organization.OrganizationName
                             },
-                            Members = new Member { }
+                            Members = new Member { }*/
 
 
-                        }).Where(e => e.Id == id).ToListAsync();
+                        }).ToListAsync();
         }
     } 
 }
